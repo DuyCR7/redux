@@ -6,12 +6,12 @@ const INITIAL_STATE = {
     count: 0,
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+const counterReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
 
         case INCREMENT:
-
+            console.log("running INCREMENT action");
             return {
 
                 ...state, count: state.count + 1,
@@ -19,7 +19,7 @@ const reducer = (state = INITIAL_STATE, action) => {
             };
 
         case DECREMENT:
-
+            console.log("running DECREMENT action");
             return {
                 ...state, count: state.count - 1,
 
@@ -31,4 +31,4 @@ const reducer = (state = INITIAL_STATE, action) => {
 
 };
 
-export default reducer;
+export default counterReducer;

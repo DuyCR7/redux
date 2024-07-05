@@ -6,8 +6,21 @@ import {
   increaseCounter,
   decreaseCounter,
 } from "./action/actions"
+import store from "./redux/store";
 
 function App(props) {
+
+  // event handler
+  const handleIncrease = () => {
+    // dispatch action
+    props.increaseCounter();
+
+    // dispatch action
+    // store.dispatch({
+    //   type: "INCREMENT"
+    // })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -26,7 +39,7 @@ function App(props) {
 
         <div>Count: {props.count}</div>
 
-        <button onClick={() => props.increaseCounter()}>Increase Count</button>
+        <button onClick={() => handleIncrease() }>Increase Count</button>
 
         <button onClick={() => props.decreaseCounter()}>Decrease Count</button>
       </header>
@@ -34,12 +47,14 @@ function App(props) {
   );
 }
 
+// map state (redux store) + props react (lay trong store cua redux de hien thi giao dien)
 const mapStateToProps = state => {
   return {
     count: state.counter.count,
   }
 }
 
+// map dispatch (redux) to props react
 const mapDispatchToProps = dispatch => {
   return {
     increaseCounter: () => dispatch(increaseCounter()),
