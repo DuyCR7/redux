@@ -8,12 +8,19 @@ import {
 } from "./action/actions"
 import store from "./redux/store";
 
+import { useSelector, useDispatch } from "react-redux";
+
 function App(props) {
+
+  const dispatch = useDispatch();
+  const newCount = useSelector((state) => state.counter.count);
 
   // event handler
   const handleIncrease = () => {
     // dispatch action
-    props.increaseCounter();
+    // props.increaseCounter();
+
+    dispatch(increaseCounter());
 
     // dispatch action
     // store.dispatch({
@@ -37,30 +44,32 @@ function App(props) {
           Learn React
         </a>
 
-        <div>Count: {props.count}</div>
+        <div>Count: {newCount}</div>
 
         <button onClick={() => handleIncrease() }>Increase Count</button>
 
-        <button onClick={() => props.decreaseCounter()}>Decrease Count</button>
+        <button onClick={() => dispatch(decreaseCounter())}>Decrease Count</button>
       </header>
     </div>
   );
 }
 
 // map state (redux store) + props react (lay trong store cua redux de hien thi giao dien)
-const mapStateToProps = state => {
-  return {
-    count: state.counter.count,
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     count: state.counter.count,
+//   }
+// }
+//
+// // map dispatch (redux) to props react
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     increaseCounter: () => dispatch(increaseCounter()),
+//
+//     decreaseCounter: () => dispatch(decreaseCounter()),
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
 
-// map dispatch (redux) to props react
-const mapDispatchToProps = dispatch => {
-  return {
-    increaseCounter: () => dispatch(increaseCounter()),
-
-    decreaseCounter: () => dispatch(decreaseCounter()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App;
