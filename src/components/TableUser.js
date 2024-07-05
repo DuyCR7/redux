@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllUsers} from "../action/actions";
+import {deleteUser, fetchAllUsers} from "../action/actions";
 
 const TableUser = (props) => {
 
@@ -13,20 +13,12 @@ const TableUser = (props) => {
     const isLoading = useSelector((state) => state.user.isLoading);
     const isError = useSelector((state) => state.user.isError);
 
-    // const fetchAllUsers = async () => {
-    //     const res = await axios.get("http://localhost:8080/users/all");
-    //     const data = res && res.data ? res.data : [];
-    //     setListUsers(data);
-    // }
-
     useEffect(() => {
-        // fetchAllUsers();
-
         dispatch(fetchAllUsers());
     }, []);
 
     const handleDeleteUser = async (user) => {
-        console.log(user);
+        dispatch(deleteUser(user.id));
     }
 
     return (
@@ -46,14 +38,14 @@ const TableUser = (props) => {
                     {
                         isError === true ?
                             <>
-                                Something wrongs, please try again...
+                                <tr><td colSpan={4}>Something wrongs, please try again...</td></tr>
                             </>
                             :
                             <>
                             {
                                 isLoading === true ?
                                     <>
-                                        <div>Loading...</div>
+                                        <tr><td colSpan={4}>Loading...</td></tr>
                                     </>
                                     :
                                     <>
