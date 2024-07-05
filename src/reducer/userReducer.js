@@ -3,7 +3,9 @@ import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_ERROR } from '../act
 
 const INITIAL_STATE = {
 
-    listUsers: []
+    listUsers: [],
+    isLoading: false,
+    isError: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -11,22 +13,28 @@ const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case FETCH_USER_REQUEST:
-            console.log("FETCH_USER_REQUEST", action);
+            // console.log("FETCH_USER_REQUEST", action);
             return {
-                ...state
+                ...state,
+                isLoading: true,
+                isError: false,
             };
 
         case FETCH_USER_SUCCESS:
-            console.log("FETCH_USER_SUCCESS", action);
+            // console.log("FETCH_USER_SUCCESS", action);
             return {
-                ...state, listUsers: action.payload
+                ...state,
+                listUsers: action.payload,
+                isLoading: false,
+                isError: false,
             };
 
         case FETCH_USER_ERROR:
-            console.log("FETCH_USER_ERROR", action);
+            // console.log("FETCH_USER_ERROR", action);
             return {
                 ...state,
-
+                isLoading: false,
+                isError: true,
             };
 
         default: return state;
