@@ -11,7 +11,7 @@ const counterReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case INCREMENT:
-            console.log("running INCREMENT action");
+            // console.log("running INCREMENT action");
             return {
 
                 ...state, count: state.count + 1,
@@ -19,7 +19,7 @@ const counterReducer = (state = INITIAL_STATE, action) => {
             };
 
         case DECREMENT:
-            console.log("running DECREMENT action");
+            // console.log("running DECREMENT action");
             return {
                 ...state, count: state.count - 1,
 
